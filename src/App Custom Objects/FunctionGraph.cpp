@@ -23,7 +23,7 @@ namespace ArktisProductions
     ////////////////////////////////////////////////////////////
     sf::Vertex FunctionGraph::valueToCoordinate(float x, float y)
     {
-
+		return sf::Vertex();
     }
 
     ////////////////////////////////////////////////////////////
@@ -31,27 +31,19 @@ namespace ArktisProductions
     {
         // f(x) = sin((5x^2 - 8x - 13)/(x^2 - 5))
         // TODO: Finish this calculation of coordinates
-        float distBetweenPoints;
-        if (*this->xMin > 0) // TODO: Make the y axis disappear in that case
-            distBetweenPoints = *this->xMax - *this->xMin;
-        else if (*this->xMax < 0)
-            distBetweenPoints = abs(*this->xMax) - abs(*this->xMin);
-        else
-            distBetweenPoints = abs(*this->xMin) + *this->xMax;
+        //float distBetweenPoints;
+        //if (*this->xMin > 0) // TODO: Make the y axis disappear in that case
+        //    distBetweenPoints = *this->xMax - *this->xMin;
+        //else if (*this->xMax < 0)
+        //    distBetweenPoints = abs(*this->xMax) - abs(*this->xMin);
+        //else
+        //    distBetweenPoints = abs(*this->xMin) + *this->xMax;
 
 
-        for (float currentXVal = *xMin; currentXVal < *xMax; currentXVal += this->precision)
-        {
-
-        }
-
-#ifdef __OS_X__
-        __asm__("");
-#endif
-#ifdef __WIN__
-
-#endif
-
+        //for (float currentXVal = *xMin; currentXVal < *xMax; currentXVal += this->precision)
+        //{
+		//
+        //}
     }
 
     ////////////////////////////////////////////////////////////

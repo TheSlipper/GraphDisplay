@@ -1,10 +1,6 @@
 ////////////////////////////////////////////////////////////
-// Created by Kornel Domeradzki and Kamil Kwaśnik.
-// Copyright © 2018 Kornel Domeradzki and Kamil Kwaśnik. All rights reserved.
-////////////////////////////////////////////////////////////
-
-////////////////////////////////////////////////////////////
-// Definitions
+// Created by Kornel Domeradzki.
+// Copyright © 2018 Kornel Domeradzki. All rights reserved.
 ////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////
@@ -25,7 +21,7 @@ namespace ArktisProductions
     {
         this->_data->assets.LoadFont("mainFont", "assets/fonts/SF Pro/SF-Pro-Display-Light.otf");
         this->_diagramGrid = std::make_unique<DiagramGrid>(this->_data);
-        this->_functionGraph = std::make_unique<FunctionGraph>(this->_data, -20, 20);
+        // this->_functionGraph = std::make_unique<FunctionGraph>(this->_data, -20, 20, 10.0f);
     }
 
     ////////////////////////////////////////////////////////////
@@ -53,7 +49,7 @@ namespace ArktisProductions
 
         this->_data->window.draw(*this->_diagramGrid);
 
-        this->_data->window.draw(*this->_functionGraph);
+        // this->_data->window.draw(*this->_functionGraph);
 
         this->_data->window.display();
     }

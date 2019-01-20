@@ -10,7 +10,7 @@
 #include <SFML/Graphics.hpp>
 #include <cmath>
 #include "../State.hpp"
-#include "App Engine/App.hpp"
+#include "../../App Engine/App.hpp"
 #include "../../DEFINITIONS.h"
 #include "../../App Custom Objects/DiagramGrid.hpp"
 #include "../../App Custom Objects/FunctionGraph.hpp"

@@ -24,7 +24,7 @@ namespace ArktisProductions
         /// \brief DiagramState constructor
         ///
         ////////////////////////////////////////////////////////////
-        FunctionGraph(GameDataRef data, float xMin, float xMax, float precision);
+		FunctionGraph(GameDataRef data, float xMin, float xMax, float precision);
 
     private:
         ////////////////////////////////////////////////////////////

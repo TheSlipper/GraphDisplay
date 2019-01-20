@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////
-// Created by Kornel Domeradzki and Kamil Kwaśnik.
-// Copyright © 2018 Kornel Domeradzki and Kamil Kwaśnik. All rights reserved.
+// Created by Kornel Domeradzki.
+// Copyright © 2018 Kornel Domeradzki. All rights reserved.
 ////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////
@@ -32,9 +32,10 @@ namespace ArktisProductions
         this->x.setFillColor(sf::Color::Black);
 
         // Y text
-        this->y.setString("y");
+        this->y.setString("t (s)");
         this->y.setFont(this->_data->assets.GetFont("mainFont"));
-        this->y.setPosition(this->verticalLine.getPosition().x + this->verticalLine.getGlobalBounds().width + 10, 2);
+        this->y.setPosition(this->verticalLine.getPosition().x + this->verticalLine.getGlobalBounds().width + 10.0f, 
+								this->y.getCharacterSize() + 10.0f);
         this->y.setFillColor(sf::Color::Black);
     }
 
