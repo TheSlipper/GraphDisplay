@@ -1,2 +1,2 @@
 # GraphDisplay
-Short project for my low-level laboratory classes
+Small project for my low-level laboratory classes
