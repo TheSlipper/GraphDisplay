@@ -8,8 +8,8 @@
 ////////////////////////////////////////////////////////////
 // Definitions
 ////////////////////////////////////////////////////////////
-#define ARRAY_SIZE 43
-#define WIDTH_MULTIPLIER ((SCRWIDTH*20.0f)/1920.0f)
+#define ARRAY_MAX_SIZE 30238
+#define WIDTH_MULTIPLIER ((SCRWIDTH*0.5f)/1920.0f)
 #define HEIGHT_MULTIPLIER ((SCRHEIGHT*16.0f)/1080.0f)
 
 ////////////////////////////////////////////////////////////
@@ -28,14 +28,14 @@ namespace ArktisProductions
 	/// \brief DiagramState class
 	///
 	////////////////////////////////////////////////////////////
-	class Fibonacci : public FunctionGraph
+	class BubbleSorting : public FunctionGraph
 	{
 	public:
 		////////////////////////////////////////////////////////////
 		/// \brief DiagramState constructor
 		///
 		////////////////////////////////////////////////////////////
-		Fibonacci(GameDataRef data);
+		BubbleSorting(GameDataRef data);
 
 		////////////////////////////////////////////////////////////
 		/// \brief Sets the vertexArray arguments' coordinates
@@ -44,21 +44,46 @@ namespace ArktisProductions
 		void ArrayInit(bool usingCpp);
 
 		////////////////////////////////////////////////////////////
-		/// \brief Calculates the n-th argument of fibonaccis formula
-		///
-		/// \param int x which argument do you want to calculate
+		/// \brief Swaps two values
 		///
 		////////////////////////////////////////////////////////////
-		int FibonacciFunc(int n);
+		void swap(int *xp, int *yp);
 
 		////////////////////////////////////////////////////////////
-		/// \brief Calculates the n-th argument of fibonaccis formula
-		///			using MASM instead of C++
+		/// \brief Returns a dynamic array initialized with random numbers
 		///
-		/// \param int x which argument do you want to calculate
+		/// \param int n length
+		///
+		/// \returns array
 		///
 		////////////////////////////////////////////////////////////
-		int FibonacciFuncMASM(int n);
+		int* GetRandomNumArrayCpp(int n);
+
+		////////////////////////////////////////////////////////////
+		/// \brief Returns a dynamic array initialized with random numbers
+		///
+		/// \param int n length
+		///
+		/// \returns array
+		///
+		////////////////////////////////////////////////////////////
+		int* GetRandomNumArrayMASM(int n);
+
+		////////////////////////////////////////////////////////////
+		/// \brief Bubble sorts an array with C++
+		///
+		/// \param int* array array
+		///
+		////////////////////////////////////////////////////////////
+		void SortArrayCpp(int *array);
+
+		////////////////////////////////////////////////////////////
+		/// \brief Bubble sorts an array with MASM
+		///
+		/// \param int* array array
+		///
+		////////////////////////////////////////////////////////////
+		void SortArrayMASM(int *array);
 
 	private:
 		float *elapsedTimes, calcTime;

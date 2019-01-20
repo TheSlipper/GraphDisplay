@@ -35,8 +35,8 @@ namespace ArktisProductions
 
 			std::cout << "Calculated f(" << i << "), took " << end_t << "s" << std::endl;
 
-			this->vertexArray[i - 1] = sf::Vector2f((SCRWIDTH / 2.0f) + (i * 20),
-				(SCRHEIGHT / 2.0f) - (this->elapsedTimes[i - 1] * 16));
+			this->vertexArray[i - 1] = sf::Vector2f((SCRWIDTH / 2.0f) + (i * WIDTH_MULTIPLIER),
+				(SCRHEIGHT / 2.0f) - (this->elapsedTimes[i - 1] * HEIGHT_MULTIPLIER));
 			if (usingCpp) this->vertexArray[i - 1].color = sf::Color::Blue;
 			else this->vertexArray[i - 1].color = sf::Color::Green;
 		}

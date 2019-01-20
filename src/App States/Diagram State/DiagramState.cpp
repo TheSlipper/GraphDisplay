@@ -36,6 +36,12 @@ namespace ArktisProductions
         {
             if (sf::Event::Closed == event.type)
                 this->_data->window.close();
+			else if (event.type == sf::Event::KeyPressed && this->_data->window.hasFocus())
+			{
+				this->_functionGraphCpp = std::make_unique<BubbleSorting>(this->_data);
+				this->_functionGraphMASM = std::make_unique<BubbleSorting>(this->_data);
+				this->_functionGraphCpp->ArrayInit(true);
+			}
         }
     }
 

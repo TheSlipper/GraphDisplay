@@ -15,6 +15,7 @@
 #include "../../App Custom Objects/DiagramGrid/DiagramGrid.hpp"
 #include "../../App Custom Objects/FunctionGraph/FunctionGraph.hpp"
 #include "../../App Custom Objects/Fibonacci/Fibonacci.hpp"
+#include "../../App Custom Objects/BubbleSorting/BubbleSorting.hpp"
 
 
 namespace ArktisProductions
