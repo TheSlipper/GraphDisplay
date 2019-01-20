@@ -21,7 +21,10 @@ namespace ArktisProductions
     {
         this->_data->assets.LoadFont("mainFont", "assets/fonts/SF Pro/SF-Pro-Display-Light.otf");
         this->_diagramGrid = std::make_unique<DiagramGrid>(this->_data);
-        this->_functionGraph = std::make_unique<Fibonacci>(this->_data);
+        this->_functionGraphCpp = std::make_unique<Fibonacci>(this->_data);
+		this->_functionGraphMASM = std::make_unique<Fibonacci>(this->_data);
+		this->_functionGraphCpp->ArrayInit(true);
+		this->_functionGraphMASM->ArrayInit(false);
     }
 
     ////////////////////////////////////////////////////////////
@@ -48,7 +51,9 @@ namespace ArktisProductions
 
         this->_data->window.draw(*this->_diagramGrid);
 
-        this->_data->window.draw(*this->_functionGraph);
+        this->_data->window.draw(*this->_functionGraphCpp);
+
+		this->_data->window.draw(*this->_functionGraphMASM);
 
         this->_data->window.display();
     }

@@ -12,7 +12,7 @@
 #include "../State.hpp"
 #include "../../App Engine/App.hpp"
 #include "../../DEFINITIONS.h"
-#include "../../App Custom Objects/DiagramGrid.hpp"
+#include "../../App Custom Objects/DiagramGrid/DiagramGrid.hpp"
 #include "../../App Custom Objects/FunctionGraph/FunctionGraph.hpp"
 #include "../../App Custom Objects/Fibonacci/Fibonacci.hpp"
 
@@ -62,7 +62,9 @@ namespace ArktisProductions
     private:
         std::unique_ptr<DiagramGrid> _diagramGrid;
 
-        std::unique_ptr<FunctionGraph> _functionGraph;
+        std::unique_ptr<FunctionGraph> _functionGraphCpp;
+
+		std::unique_ptr<FunctionGraph> _functionGraphMASM;
 
         GameDataRef _data;
     };

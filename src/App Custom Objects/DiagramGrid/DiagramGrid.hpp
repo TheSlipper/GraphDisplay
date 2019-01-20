@@ -7,8 +7,8 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include "../App Engine/App.hpp"
-#include "../DEFINITIONS.h"
+#include "../../App Engine/App.hpp"
+#include "../../DEFINITIONS.h"
 #include <SFML/Graphics.hpp>
 
 namespace ArktisProductions
@@ -34,6 +34,10 @@ namespace ArktisProductions
         sf::RectangleShape verticalLine;
 
         sf::RectangleShape horizontalLine;
+
+		sf::RectangleShape verticalIndicator;
+
+		sf::RectangleShape horizontalIndicator;
 
         sf::Text x;
 

@@ -24,6 +24,18 @@ namespace ArktisProductions
         // Center lines
         this->centerObjects();
 
+
+		// Vertical Indicator
+		this->verticalIndicator.setSize(sf::Vector2f(20.0f, 3.0f));
+		this->verticalIndicator.setFillColor(sf::Color::Black);
+		this->verticalIndicator.setPosition(SCRWIDTH/2.0f, this->horizontalLine.getGlobalBounds().left + 20);
+
+		// Horizontal Indicator
+		this->horizontalIndicator.setSize(sf::Vector2f(3.0f, 20.0f));
+		this->horizontalIndicator.setFillColor(sf::Color::Black);
+		this->horizontalIndicator.setPosition((SCRWIDTH / 2.0f) + 20, this->horizontalLine.getGlobalBounds().left);
+
+
         // X Text
         this->x.setFont(this->_data->assets.GetFont("mainFont"));
         this->x.setString("x");
@@ -61,5 +73,7 @@ namespace ArktisProductions
         target.draw(this->verticalLine);
         target.draw(this->x);
         target.draw(this->y);
+		target.draw(this->verticalIndicator);
+		target.draw(this->horizontalIndicator);
     }
 }
