@@ -13,7 +13,8 @@
 #include "../../App Engine/App.hpp"
 #include "../../DEFINITIONS.h"
 #include "../../App Custom Objects/DiagramGrid.hpp"
-#include "../../App Custom Objects/FunctionGraph.hpp"
+#include "../../App Custom Objects/FunctionGraph/FunctionGraph.hpp"
+#include "../../App Custom Objects/Fibonacci/Fibonacci.hpp"
 
 
 namespace ArktisProductions

@@ -7,9 +7,11 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include "../App Engine/App.hpp"
-#include "../DEFINITIONS.h"
+#include "../../App Engine/App.hpp"
+#include "../../DEFINITIONS.h"
 #include <SFML/Graphics.hpp>
+#include <iostream>
+
 
 namespace ArktisProductions
 {
@@ -24,23 +26,14 @@ namespace ArktisProductions
         /// \brief DiagramState constructor
         ///
         ////////////////////////////////////////////////////////////
-		FunctionGraph(GameDataRef data, float xMin, float xMax, float precision);
+		FunctionGraph(GameDataRef data);
 
-    private:
-        ////////////////////////////////////////////////////////////
-        /// \brief Creates a sf::Vertex object in a specific spot
-        ///
-        /// \returns sf::vertex in a specific spot
-        ///
-        ////////////////////////////////////////////////////////////
-        sf::Vertex valueToCoordinate(float x, float y);
-
-        ////////////////////////////////////////////////////////////
-        /// \brief Calculates the coordinates of all arguments of a given
-        ///         function
-        ///
-        ////////////////////////////////////////////////////////////
-        void calculateArgs();
+    protected:
+		////////////////////////////////////////////////////////////
+		/// \brief Sets the vertexArray arguments' coordinates
+		///
+		////////////////////////////////////////////////////////////
+		virtual void ArrayInit() = 0;
 
         ////////////////////////////////////////////////////////////
         /// \brief Draws the graph
@@ -48,7 +41,7 @@ namespace ArktisProductions
         ////////////////////////////////////////////////////////////
         void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
-        float *xMin, *xMax, precision;
+		int amplitude;
 
         sf::VertexArray vertexArray;
 

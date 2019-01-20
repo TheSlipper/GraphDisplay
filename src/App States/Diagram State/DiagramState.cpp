@@ -21,7 +21,7 @@ namespace ArktisProductions
     {
         this->_data->assets.LoadFont("mainFont", "assets/fonts/SF Pro/SF-Pro-Display-Light.otf");
         this->_diagramGrid = std::make_unique<DiagramGrid>(this->_data);
-        // this->_functionGraph = std::make_unique<FunctionGraph>(this->_data, -20, 20, 10.0f);
+        this->_functionGraph = std::make_unique<Fibonacci>(this->_data);
     }
 
     ////////////////////////////////////////////////////////////
@@ -33,7 +33,6 @@ namespace ArktisProductions
         {
             if (sf::Event::Closed == event.type)
                 this->_data->window.close();
-
         }
     }
 
@@ -49,7 +48,7 @@ namespace ArktisProductions
 
         this->_data->window.draw(*this->_diagramGrid);
 
-        // this->_data->window.draw(*this->_functionGraph);
+        this->_data->window.draw(*this->_functionGraph);
 
         this->_data->window.display();
     }
