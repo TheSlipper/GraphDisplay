@@ -20,11 +20,29 @@ namespace ArktisProductions
     void DiagramState::Init()
     {
         this->_data->assets.LoadFont("mainFont", "assets/fonts/SF Pro/SF-Pro-Display-Light.otf");
-        this->_diagramGrid = std::make_unique<DiagramGrid>(this->_data);
-        this->_functionGraphCpp = std::make_unique<Fibonacci>(this->_data);
-		this->_functionGraphMASM = std::make_unique<Fibonacci>(this->_data);
-		this->_functionGraphCpp->ArrayInit(true);
-		this->_functionGraphMASM->ArrayInit(false);
+
+		this->_diagramGrid = std::make_unique<DiagramGrid>(this->_data);
+
+		switch (this->_data->graphType)
+		{
+		case GraphType::Fibonacci:
+			this->_functionGraphCpp = std::make_unique<Fibonacci>(this->_data);
+			this->_functionGraphMASM = std::make_unique<Fibonacci>(this->_data);
+			this->_functionGraphCpp->ArrayInit(true);
+			this->_functionGraphMASM->ArrayInit(false);
+			break;
+		case GraphType::Sort:
+			this->_functionGraphCpp = std::make_unique<BubbleSorting>(this->_data);
+			this->_functionGraphMASM = std::make_unique<BubbleSorting>(this->_data);
+			this->_functionGraphCpp->ArrayInit(true);
+			break;
+		default:
+			this->_functionGraphCpp = std::make_unique<Fibonacci>(this->_data);
+			this->_functionGraphMASM = std::make_unique<Fibonacci>(this->_data);
+			break;
+		}
+
+
     }
 
     ////////////////////////////////////////////////////////////
@@ -36,12 +54,6 @@ namespace ArktisProductions
         {
             if (sf::Event::Closed == event.type)
                 this->_data->window.close();
-			else if (event.type == sf::Event::KeyPressed && this->_data->window.hasFocus())
-			{
-				this->_functionGraphCpp = std::make_unique<BubbleSorting>(this->_data);
-				this->_functionGraphMASM = std::make_unique<BubbleSorting>(this->_data);
-				this->_functionGraphCpp->ArrayInit(true);
-			}
         }
     }
 

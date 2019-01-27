@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////
-// Created by Kornel Domeradzki and Kamil Kwaśnik.
-// Copyright © 2018 Kornel Domeradzki and Kamil Kwaśnik. All rights reserved.
+// Created by Kornel Domeradzki.
+// Copyright © 2018 Kornel Domeradzki. All rights reserved.
 ////////////////////////////////////////////////////////////
 #pragma once
 
@@ -14,6 +14,7 @@
 #include "StateMachine.hpp"
 #include "AssetManager.hpp"
 #include "User Input Module/InputManager.hpp"
+#include "../DEFINITIONS.h"
 
 namespace ArktisProductions
 {
@@ -39,6 +40,7 @@ namespace ArktisProductions
         AssetManager assets;
         InputManager input;
         GameSettings settings;
+		GraphType graphType;
     };
 
     typedef std::shared_ptr<GameData> GameDataRef;  ///< Definition of shared pointer to the GameData struct
@@ -56,7 +58,7 @@ namespace ArktisProductions
         /// \param std::string title of the window
         ///
         ////////////////////////////////////////////////////////////
-        App(std::string title);
+        App(std::string title, int fromX, int fromY, GraphType graphType);
 
         ////////////////////////////////////////////////////////////
         /// \brief Loads the settings from the given file

@@ -1,22 +1,27 @@
+﻿////////////////////////////////////////////////////////////
+// Created by Kornel Domeradzki.
+// Copyright © 2018 Kornel Domeradzki. All rights reserved.
+////////////////////////////////////////////////////////////
+
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
 #include "App.hpp"
 #include "../App States/Diagram State/DiagramState.hpp"
 
-
 namespace ArktisProductions
 {
     ////////////////////////////////////////////////////////////
-    App::App(std::string title)
+    App::App(std::string title, int fromX, int fromY, GraphType graphType)
     {
         this->LoadGamesSettings("game_settings.conf");
+		this->_data->graphType = graphType;
 
-        _data->window.create(sf::VideoMode(this->_data->settings.width,
+        this->_data->window.create(sf::VideoMode(this->_data->settings.width,
                     this->_data->settings.height), title, sf::Style::Close
                                                         | sf::Style::Titlebar);
-
-        _data->machine.AddState(StateRef(new DiagramState(this->_data)));
+		this->_data->window.setPosition(sf::Vector2i(fromX, fromY));
+        this->_data->machine.AddState(StateRef(new DiagramState(this->_data)));
 
         this->Run();
     }

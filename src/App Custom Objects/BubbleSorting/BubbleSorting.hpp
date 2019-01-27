@@ -9,8 +9,8 @@
 // Definitions
 ////////////////////////////////////////////////////////////
 #define ARRAY_MAX_SIZE 30238
-#define WIDTH_MULTIPLIER ((SCRWIDTH*0.5f)/1920.0f)
-#define HEIGHT_MULTIPLIER ((SCRHEIGHT*16.0f)/1080.0f)
+#define WIDTH_MULTIPLIER ((SCRWIDTH*3.0f)/1920.0f)
+#define HEIGHT_MULTIPLIER ((SCRHEIGHT*5.0f)/1080.0f)
 
 ////////////////////////////////////////////////////////////
 // Headers

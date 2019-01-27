@@ -22,22 +22,25 @@ namespace ArktisProductions
 	void BubbleSorting::ArrayInit(bool usingCpp)
 	{
 		this->calcTime = this->_data->gameClock.getElapsedTime().asSeconds();
-		srand(time(NULL));
+		srand(69);
 
 		for (int i = 2; i < ARRAY_MAX_SIZE; i++)
 		{
-			clock_t time = clock();
+			// clock_t time = clock();
+			float time = this->_data->gameClock.getElapsedTime().asMicroseconds();
 			int *tempArray;
 			if (usingCpp)
 			{
 				tempArray = this->GetRandomNumArrayCpp(i);
 				this->SortArrayCpp(tempArray);
 			}
-			this->elapsedTimes[i] = (float(clock()) - float(time)) / CLOCKS_PER_SEC;
-			std::cout << "Sorted an array with " << i << " elements, took " << this->elapsedTimes[i] << "s" << std::endl;
+			this->elapsedTimes[i] = this->_data->gameClock.getElapsedTime().asMicroseconds() - time;
+			std::cout << "Sorted an array with " << i << " elements, took " << this->elapsedTimes[i] << "ms" << std::endl;
 
-			this->vertexArray[i - 1] = sf::Vector2f((SCRWIDTH / 2.0f) + (i * WIDTH_MULTIPLIER),
+			this->vertexArray[i] = sf::Vector2f((SCRWIDTH / 2.0f) + (i * WIDTH_MULTIPLIER),
 				(SCRHEIGHT / 2.0f) - (this->elapsedTimes[i - 1] * HEIGHT_MULTIPLIER));
+			if (usingCpp) this->vertexArray[i].color = sf::Color::Blue;
+			else this->vertexArray[i].color = sf::Color::Green;
 		}
 
 		this->calcTime = this->_data->gameClock.getElapsedTime().asSeconds() - this->calcTime;
@@ -126,7 +129,7 @@ namespace ArktisProductions
 
 		mov eax, [esi]
 			push edx
-			invoke printf, addr fmtmsg1, eax
+			// invoke printf, addr fmtmsg1, eax
 			pop edx
 
 			add esi, 4
@@ -134,7 +137,7 @@ namespace ArktisProductions
 			cmp edx, 5
 			jne loop3
 
-			invoke printf, addr fmtmsg2
+			// invoke printf, addr fmtmsg2
 		}
 	}
 }

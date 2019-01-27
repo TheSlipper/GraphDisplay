@@ -24,13 +24,12 @@ namespace ArktisProductions
 		this->calcTime = this->_data->gameClock.getElapsedTime().asSeconds();
 		for (int i = 1; i <= ARRAY_SIZE; i++)
 		{
-			// float helper = this->_data->gameClock.getElapsedTime().asSeconds();
-			const clock_t begin_time = clock();
+			float helper = this->_data->gameClock.getElapsedTime().asSeconds();
 			if (usingCpp)
 				this->FibonacciFunc(i);
 			else
 				this->FibonacciFuncMASM(i);
-			float end_t = float(clock() - begin_time)/CLOCKS_PER_SEC;
+			float end_t = this->_data->gameClock.getElapsedTime().asSeconds() - helper;
 			this->elapsedTimes[i - 1] = end_t;
 
 			std::cout << "Calculated f(" << i << "), took " << end_t << "s" << std::endl;
