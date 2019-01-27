@@ -6,12 +6,12 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include "SineGraph.hpp"
+#include "NWD.hpp"
 
 namespace ArktisProductions
 {
 	////////////////////////////////////////////////////////////
-	SineGraph::SineGraph(GameDataRef data) :FunctionGraph(data)
+	NWD::NWD(GameDataRef data) :FunctionGraph(data)
 	{
 		this->elapsedTimes = new float[ARRAY_SIZE + 1];
 		this->vertexArray = sf::VertexArray(sf::Lines, ARRAY_SIZE + 1);
@@ -19,27 +19,27 @@ namespace ArktisProductions
 	}
 
 	////////////////////////////////////////////////////////////
-	void SineGraph::ArrayInit(bool usingCpp)
+	void NWD::ArrayInit(bool usingCpp)
 	{
 		this->calcTime = this->_data->gameClock.getElapsedTime().asSeconds();
-		int j = 1;
-		for (int i = -300; i <= ARRAY_SIZE-300; i++)
+		srand(69);
+		for (int i = 1; i <= ARRAY_SIZE; i++)
 		{
+			int a = abs(rand()), b = abs(rand());
 			float helper = this->_data->gameClock.getElapsedTime().asSeconds();
 			if (usingCpp)
-				this->SineFunc(i);
+				this->NWDFunc(a,b);
 			else
-				this->SineFuncMASM(i);
+				this->NWDFuncMasm(a,b);
 			float end_t = this->_data->gameClock.getElapsedTime().asSeconds() - helper;
-			this->elapsedTimes[j - 1] = end_t;
+			this->elapsedTimes[i - 1] = end_t;
 
 			std::cout << "Calculated f(" << i << "), took " << end_t << "s" << std::endl;
 
-			this->vertexArray[j - 1] = sf::Vector2f((SCRWIDTH / 2.0f) + (i * WIDTH_MULTIPLIER),
-				(SCRHEIGHT / 2.0f) - (this->elapsedTimes[j - 1] * HEIGHT_MULTIPLIER));
-			if (usingCpp) this->vertexArray[j - 1].color = sf::Color::Blue;
-			else this->vertexArray[j - 1].color = sf::Color::Green;
-			j++;
+			this->vertexArray[i - 1] = sf::Vector2f((SCRWIDTH / 2.0f) + (i * WIDTH_MULTIPLIER),
+				(SCRHEIGHT / 2.0f) - (this->elapsedTimes[i - 1] * HEIGHT_MULTIPLIER));
+			if (usingCpp) this->vertexArray[i - 1].color = sf::Color::Blue;
+			else this->vertexArray[i - 1].color = sf::Color::Green;
 		}
 		this->vertexArray[this->vertexArray.getVertexCount() - 1] = this->vertexArray[this->vertexArray.getVertexCount() - 2];
 		this->vertexArray[this->vertexArray.getVertexCount() - 1].color = sf::Color::White;
@@ -60,21 +60,30 @@ namespace ArktisProductions
 	}
 
 	////////////////////////////////////////////////////////////
-	float SineGraph::SineFunc(int n)
+	int NWD::NWDFunc(int a, int b)
 	{
-		return sin(n);
+		if (a != b)
+			return this->NWDFunc(a > b ? a - b : a, b > a ? b - a : b);
+		return a;
 	}
 
 	////////////////////////////////////////////////////////////
-	float SineGraph::SineFuncMASM(int n)
+	int NWD::NWDFuncMasm(int a, int b)
 	{
-		float placeholder;
 		_asm 
 		{
-			fld n
-			fsin
-			fstp placeholder
+			MOV EAX, a
+			MOV EBX, b
+			algorithm:
+				CMP EAX, EBX
+				JE end
+				JA delBfromA
+					SUB EBX, EAX
+					JMP algorithm
+				delBFromA:
+					SUB EAX, EBX
+					jmp algorithm
+			end:
 		}
-		return placeholder;
 	}
 }

@@ -8,9 +8,9 @@
 ////////////////////////////////////////////////////////////
 // Definitions
 ////////////////////////////////////////////////////////////
-#define ARRAY_MAX_SIZE 30238
-#define WIDTH_MULTIPLIER ((SCRWIDTH*3.0f)/1920.0f)
-#define HEIGHT_MULTIPLIER ((SCRHEIGHT*5.0f)/1080.0f)
+#define ARRAY_SIZE 602
+#define WIDTH_MULTIPLIER 1
+#define HEIGHT_MULTIPLIER ((SCRHEIGHT*3000000.0f)/1080.0f)
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -20,22 +20,23 @@
 #include "../../DEFINITIONS.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <math.h>
 
 
 namespace ArktisProductions
 {
 	////////////////////////////////////////////////////////////
-	/// \brief DiagramState class
+	/// \brief SineGraph class
 	///
 	////////////////////////////////////////////////////////////
-	class BubbleSorting : public FunctionGraph
+	class TanGraph : public FunctionGraph
 	{
 	public:
 		////////////////////////////////////////////////////////////
 		/// \brief DiagramState constructor
 		///
 		////////////////////////////////////////////////////////////
-		BubbleSorting(GameDataRef data);
+		TanGraph(GameDataRef data);
 
 		////////////////////////////////////////////////////////////
 		/// \brief Sets the vertexArray arguments' coordinates
@@ -44,46 +45,21 @@ namespace ArktisProductions
 		void ArrayInit(bool usingCpp);
 
 		////////////////////////////////////////////////////////////
-		/// \brief Swaps two values
+		/// \brief Calculates the n-th argument of sine function
+		///
+		/// \param int x which argument do you want to calculate
 		///
 		////////////////////////////////////////////////////////////
-		void swap(int *xp, int *yp);
+		float TanFunc(int n);
 
 		////////////////////////////////////////////////////////////
-		/// \brief Returns a dynamic array initialized with random numbers
+		/// \brief Calculates the n-th argument of sine function
+		///			using MASM instead of C++
 		///
-		/// \param int n length
-		///
-		/// \returns array
-		///
-		////////////////////////////////////////////////////////////
-		int* GetRandomNumArrayCpp(int n);
-
-		////////////////////////////////////////////////////////////
-		/// \brief Returns a dynamic array initialized with random numbers
-		///
-		/// \param int n length
-		///
-		/// \returns array
+		/// \param int x which argument do you want to calculate
 		///
 		////////////////////////////////////////////////////////////
-		int* GetRandomNumArrayMASM(int n);
-
-		////////////////////////////////////////////////////////////
-		/// \brief Bubble sorts an array with C++
-		///
-		/// \param int* array array
-		///
-		////////////////////////////////////////////////////////////
-		void SortArrayCpp(int *array);
-
-		////////////////////////////////////////////////////////////
-		/// \brief Bubble sorts an array with MASM
-		///
-		/// \param int* array array
-		///
-		////////////////////////////////////////////////////////////
-		void SortArrayMASM(int *array);
+		float TanFuncMASM(int n);
 
 	private:
 		float *elapsedTimes, calcTime;

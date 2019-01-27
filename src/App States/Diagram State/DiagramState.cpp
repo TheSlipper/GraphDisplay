@@ -31,10 +31,11 @@ namespace ArktisProductions
 			this->_functionGraphCpp->ArrayInit(true);
 			this->_functionGraphMASM->ArrayInit(false);
 			break;
-		case GraphType::Sort:
-			this->_functionGraphCpp = std::make_unique<BubbleSorting>(this->_data);
-			this->_functionGraphMASM = std::make_unique<BubbleSorting>(this->_data);
+		case GraphType::NWD:
+			this->_functionGraphCpp = std::make_unique<NWD>(this->_data);
+			this->_functionGraphMASM = std::make_unique<NWD>(this->_data);
 			this->_functionGraphCpp->ArrayInit(true);
+			this->_functionGraphMASM->ArrayInit(false);
 			break;
 		case GraphType::Sine:
 			this->_functionGraphCpp = std::make_unique<SineGraph>(this->_data);
@@ -42,12 +43,16 @@ namespace ArktisProductions
 			this->_functionGraphCpp->ArrayInit(true);
 			this->_functionGraphMASM->ArrayInit(false);
 			break;
+		case GraphType::Tan:
+			this->_functionGraphCpp = std::make_unique<TanGraph>(this->_data);
+			this->_functionGraphMASM = std::make_unique<TanGraph>(this->_data);
+			this->_functionGraphCpp->ArrayInit(true);
+			this->_functionGraphMASM->ArrayInit(false);
 		default:
 			this->_functionGraphCpp = std::make_unique<Fibonacci>(this->_data);
 			this->_functionGraphMASM = std::make_unique<Fibonacci>(this->_data);
 			break;
 		}
-
 
     }
 

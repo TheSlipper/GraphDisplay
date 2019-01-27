@@ -6,19 +6,20 @@
 /// Menu stuff
 #define MY_WIN_CLASS_NAME "GraphDisplay"
 #define MY_WIN_NAME "Graph Display"
-#define EV_FIB -70
-#define EV_SORT -69
-#define EV_CLEAR -68
-#define EV_DESTROY -67
-#define EV_SINE -66
+#define EV_ABOUT 0
+#define EV_SINE 1
+#define EV_TAN 2
+#define EV_FIB 3
+#define EV_NWD 4
+#define EV_DESTROY 5
 
 #define X_PADDING 10
 #define Y_PADDING 10
 #define MENU_WIDTH 500
-#define MENU_HEIGHT 500
+#define MENU_HEIGHT 250
 
 /// Application metadata
-#define APP_NAME "Diagram Displayer"
+#define APP_NAME "GraphDisplay"
 #define APP_X_PADDING X_PADDING+MENU_WIDTH
 #define APP_Y_PADDING Y_PADDING
 
@@ -27,7 +28,7 @@
 #define SCRHEIGHT this->_data->window.getSize().y
 
 /// Available Graphs
-enum GraphType {Fibonacci, Sort, Sine};
+enum GraphType {Fibonacci, NWD, Sine, Tan};
 
 /// Fonts
 #define MAIN_FONT_NAME "mainFont"

@@ -45,11 +45,13 @@ namespace ArktisProductions
 		this->calcTime = this->_data->gameClock.getElapsedTime().asSeconds() - this->calcTime;
 		if (usingCpp)
 		{
+			this->time.setFillColor(sf::Color::Blue);
 			this->time.setString("[C++] Time spent to calculate: " + std::to_string(this->calcTime) + "s");
 			this->time.setPosition(10, 30);
 		}
 		else
 		{
+			this->time.setFillColor(sf::Color::Green);
 			this->time.setString("[ASM] Time spent to calculate: " + std::to_string(this->calcTime) + "s");
 			this->time.setPosition(10, 80);
 		}

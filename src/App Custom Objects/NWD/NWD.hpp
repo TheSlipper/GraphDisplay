@@ -8,9 +8,9 @@
 ////////////////////////////////////////////////////////////
 // Definitions
 ////////////////////////////////////////////////////////////
-#define ARRAY_SIZE 602
-#define WIDTH_MULTIPLIER 1
-#define HEIGHT_MULTIPLIER ((SCRHEIGHT*3000000.0f)/1080.0f)
+#define ARRAY_SIZE 300
+#define WIDTH_MULTIPLIER ((SCRWIDTH*15.0f)/1920.0f)
+#define HEIGHT_MULTIPLIER ((SCRHEIGHT*300000.0f)/1080.0f)
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -19,24 +19,22 @@
 #include "../FunctionGraph/FunctionGraph.hpp"
 #include "../../DEFINITIONS.h"
 #include <SFML/Graphics.hpp>
-#include <iostream>
-#include <math.h>
-
+#include <ctime>
 
 namespace ArktisProductions
 {
 	////////////////////////////////////////////////////////////
-	/// \brief SineGraph class
+	/// \brief DiagramState class
 	///
 	////////////////////////////////////////////////////////////
-	class SineGraph : public FunctionGraph
+	class NWD : public FunctionGraph
 	{
 	public:
 		////////////////////////////////////////////////////////////
 		/// \brief DiagramState constructor
 		///
 		////////////////////////////////////////////////////////////
-		SineGraph(GameDataRef data);
+		NWD(GameDataRef data);
 
 		////////////////////////////////////////////////////////////
 		/// \brief Sets the vertexArray arguments' coordinates
@@ -45,21 +43,21 @@ namespace ArktisProductions
 		void ArrayInit(bool usingCpp);
 
 		////////////////////////////////////////////////////////////
-		/// \brief Calculates the n-th argument of sine function
+		/// \brief Calculates the n-th argument of fibonaccis formula
 		///
 		/// \param int x which argument do you want to calculate
 		///
 		////////////////////////////////////////////////////////////
-		float SineFunc(int n);
+		int NWDFunc(int a, int b);
 
 		////////////////////////////////////////////////////////////
-		/// \brief Calculates the n-th argument of sine function
+		/// \brief Calculates the n-th argument of fibonaccis formula
 		///			using MASM instead of C++
 		///
 		/// \param int x which argument do you want to calculate
 		///
 		////////////////////////////////////////////////////////////
-		float SineFuncMASM(int n);
+		int NWDFuncMasm(int a, int b);
 
 	private:
 		float *elapsedTimes, calcTime;

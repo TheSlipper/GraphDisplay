@@ -6,12 +6,12 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include "SineGraph.hpp"
+#include "TanGraph.hpp"
 
 namespace ArktisProductions
 {
 	////////////////////////////////////////////////////////////
-	SineGraph::SineGraph(GameDataRef data) :FunctionGraph(data)
+	TanGraph::TanGraph(GameDataRef data) :FunctionGraph(data)
 	{
 		this->elapsedTimes = new float[ARRAY_SIZE + 1];
 		this->vertexArray = sf::VertexArray(sf::Lines, ARRAY_SIZE + 1);
@@ -19,21 +19,19 @@ namespace ArktisProductions
 	}
 
 	////////////////////////////////////////////////////////////
-	void SineGraph::ArrayInit(bool usingCpp)
+	void TanGraph::ArrayInit(bool usingCpp)
 	{
 		this->calcTime = this->_data->gameClock.getElapsedTime().asSeconds();
 		int j = 1;
-		for (int i = -300; i <= ARRAY_SIZE-300; i++)
+		for (int i = -300; i <= ARRAY_SIZE - 300; i++)
 		{
 			float helper = this->_data->gameClock.getElapsedTime().asSeconds();
-			if (usingCpp)
-				this->SineFunc(i);
-			else
-				this->SineFuncMASM(i);
+			if (usingCpp && i % 90 != 0)
+				this->TanFunc(i);
+			else if (i % 90 != 0)
+				this->TanFuncMASM(i);
 			float end_t = this->_data->gameClock.getElapsedTime().asSeconds() - helper;
 			this->elapsedTimes[j - 1] = end_t;
-
-			std::cout << "Calculated f(" << i << "), took " << end_t << "s" << std::endl;
 
 			this->vertexArray[j - 1] = sf::Vector2f((SCRWIDTH / 2.0f) + (i * WIDTH_MULTIPLIER),
 				(SCRHEIGHT / 2.0f) - (this->elapsedTimes[j - 1] * HEIGHT_MULTIPLIER));
@@ -60,19 +58,19 @@ namespace ArktisProductions
 	}
 
 	////////////////////////////////////////////////////////////
-	float SineGraph::SineFunc(int n)
+	float TanGraph::TanFunc(int n)
 	{
-		return sin(n);
+		return tan(n);
 	}
 
 	////////////////////////////////////////////////////////////
-	float SineGraph::SineFuncMASM(int n)
+	float TanGraph::TanFuncMASM(int n)
 	{
 		float placeholder;
-		_asm 
+		_asm
 		{
 			fld n
-			fsin
+			fptan
 			fstp placeholder
 		}
 		return placeholder;
