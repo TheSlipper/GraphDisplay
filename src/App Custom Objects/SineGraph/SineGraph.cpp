@@ -6,45 +6,47 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include "Fibonacci.hpp"
+#include "SineGraph.hpp"
 
 namespace ArktisProductions
 {
 	////////////////////////////////////////////////////////////
-	Fibonacci::Fibonacci(GameDataRef data) :FunctionGraph(data)
+	SineGraph::SineGraph(GameDataRef data) :FunctionGraph(data)
 	{
-		this->elapsedTimes = new float[ARRAY_SIZE+1];
-		this->vertexArray = sf::VertexArray(sf::Lines, ARRAY_SIZE+1);
+		this->elapsedTimes = new float[ARRAY_SIZE + 1];
+		this->vertexArray = sf::VertexArray(sf::Lines, ARRAY_SIZE + 1);
 		// this->ArrayInit();
 	}
 
 	////////////////////////////////////////////////////////////
-	void Fibonacci::ArrayInit(bool usingCpp)
+	void SineGraph::ArrayInit(bool usingCpp)
 	{
 		this->calcTime = this->_data->gameClock.getElapsedTime().asSeconds();
-		for (int i = 1; i <= ARRAY_SIZE; i++)
+		int j = 1;
+		for (int i = -300; i <= ARRAY_SIZE-300; i++)
 		{
 			float helper = this->_data->gameClock.getElapsedTime().asSeconds();
 			if (usingCpp)
-				this->FibonacciFunc(i);
+				this->SineFunc(i);
 			else
-				this->FibonacciFuncMASM(i);
+				this->SineFuncMASM(i);
 			float end_t = this->_data->gameClock.getElapsedTime().asSeconds() - helper;
-			this->elapsedTimes[i - 1] = end_t;
+			this->elapsedTimes[j - 1] = end_t;
 
 			std::cout << "Calculated f(" << i << "), took " << end_t << "s" << std::endl;
 
-			this->vertexArray[i - 1] = sf::Vector2f((SCRWIDTH / 2.0f) + (i * WIDTH_MULTIPLIER),
-				(SCRHEIGHT / 2.0f) - (this->elapsedTimes[i - 1] * HEIGHT_MULTIPLIER));
-			if (usingCpp) this->vertexArray[i - 1].color = sf::Color::Blue;
-			else this->vertexArray[i - 1].color = sf::Color::Green;
+			this->vertexArray[j - 1] = sf::Vector2f((SCRWIDTH / 2.0f) + (i * WIDTH_MULTIPLIER),
+				(SCRHEIGHT / 2.0f) - (this->elapsedTimes[j - 1] * HEIGHT_MULTIPLIER));
+			if (usingCpp) this->vertexArray[j - 1].color = sf::Color::Blue;
+			else this->vertexArray[j - 1].color = sf::Color::Green;
+			j++;
 		}
 		this->vertexArray[this->vertexArray.getVertexCount() - 1] = this->vertexArray[this->vertexArray.getVertexCount() - 2];
 		this->vertexArray[this->vertexArray.getVertexCount() - 1].color = sf::Color::White;
-		
+
 		this->calcTime = this->_data->gameClock.getElapsedTime().asSeconds() - this->calcTime;
-		if (usingCpp)
-		{
+		if (usingCpp) 
+		{ 
 			this->time.setString("[C++] Time spent to calculate: " + std::to_string(this->calcTime) + "s");
 			this->time.setPosition(10, 30);
 		}
@@ -56,39 +58,21 @@ namespace ArktisProductions
 	}
 
 	////////////////////////////////////////////////////////////
-	int Fibonacci::FibonacciFunc(int n)
+	float SineGraph::SineFunc(int n)
 	{
-		if (n < 0)
-		{
-			std::cerr << "Negative value in Fibonacci" << std::endl;
-			exit(0);
-		}
-		if (n == 0)
-			return 0;
-		else if (n == 1)
-			return 1;
-		else
-			return this->FibonacciFunc(n - 1) + this->FibonacciFunc(n - 2);
+		return sin(n);
 	}
 
 	////////////////////////////////////////////////////////////
-	int Fibonacci::FibonacciFuncMASM(int n)
+	float SineGraph::SineFuncMASM(int n)
 	{
-		int ebxCopy, ecxCopy, edxCopy;
-		_asm
+		float placeholder;
+		_asm 
 		{
-			mov  ecx, n
-			sub ecx, 1
-			mov  eax, 0; a = 0
-			mov  ebx, 1; b = 1
-			
-			_fib:
-				mov  edx, eax
-				add  edx, ebx; sum = a + b
-				mov  eax, ebx; a = b
-				mov  ebx, edx; b = sum
-			loop _fib
-			mov eax, ebx
+			fld n
+			fsin
+			fstp placeholder
 		}
+		return placeholder;
 	}
 }

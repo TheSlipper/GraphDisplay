@@ -19,7 +19,7 @@ namespace ArktisProductions
     ////////////////////////////////////////////////////////////
     void DiagramState::Init()
     {
-        this->_data->assets.LoadFont("mainFont", "assets/fonts/SF Pro/SF-Pro-Display-Light.otf");
+        this->_data->assets.LoadFont(MAIN_FONT_NAME, MAIN_FONT_PATH);
 
 		this->_diagramGrid = std::make_unique<DiagramGrid>(this->_data);
 
@@ -35,6 +35,12 @@ namespace ArktisProductions
 			this->_functionGraphCpp = std::make_unique<BubbleSorting>(this->_data);
 			this->_functionGraphMASM = std::make_unique<BubbleSorting>(this->_data);
 			this->_functionGraphCpp->ArrayInit(true);
+			break;
+		case GraphType::Sine:
+			this->_functionGraphCpp = std::make_unique<SineGraph>(this->_data);
+			this->_functionGraphMASM = std::make_unique<SineGraph>(this->_data);
+			this->_functionGraphCpp->ArrayInit(true);
+			this->_functionGraphMASM->ArrayInit(false);
 			break;
 		default:
 			this->_functionGraphCpp = std::make_unique<Fibonacci>(this->_data);

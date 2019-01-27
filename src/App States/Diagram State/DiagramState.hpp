@@ -16,7 +16,7 @@
 #include "../../App Custom Objects/FunctionGraph/FunctionGraph.hpp"
 #include "../../App Custom Objects/Fibonacci/Fibonacci.hpp"
 #include "../../App Custom Objects/BubbleSorting/BubbleSorting.hpp"
-
+#include "../../App Custom Objects/SineGraph/SineGraph.hpp"
 
 namespace ArktisProductions
 {

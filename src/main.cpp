@@ -48,6 +48,7 @@ LRESULT CALLBACK WindowProcedure(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp)
 	{
 	case WM_DESTROY:
 		PostQuitMessage(0);
+		exit(0);
 		break;
 	case WM_CREATE:
 		AddComponents(hWnd);
@@ -62,6 +63,10 @@ LRESULT CALLBACK WindowProcedure(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp)
 		/* case EV_CLEAR:
 			// TODO: Here handle clearing
 			break; */
+		case EV_SINE:
+			free(app);
+			app = new ArktisProductions::App(APP_NAME, APP_X_PADDING, APP_Y_PADDING, GraphType::Sine);
+			break;
 		case EV_FIB:
 			free(app);
 			app = new ArktisProductions::App(APP_NAME, APP_X_PADDING, APP_Y_PADDING, GraphType::Fibonacci);
@@ -87,6 +92,7 @@ void AddComponents(HWND hWnd)
 	hMenu = CreateMenu();
 	AppendMenu(hMenu, MF_STRING, EV_FIB, "Fibonacci");
 	AppendMenu(hMenu, MF_STRING, EV_SORT, "Sort");
+	AppendMenu(hMenu, MF_STRING, EV_SINE, "Sine");
 	AppendMenu(hMenu, MF_STRING, EV_CLEAR, "Clear");
 	AppendMenu(hMenu, MF_STRING, EV_DESTROY, "Exit");
 	SetMenu(hWnd, hMenu);

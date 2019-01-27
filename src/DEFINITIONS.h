@@ -10,6 +10,7 @@
 #define EV_SORT -69
 #define EV_CLEAR -68
 #define EV_DESTROY -67
+#define EV_SINE -66
 
 #define X_PADDING 10
 #define Y_PADDING 10
@@ -27,3 +28,7 @@
 
 /// Available Graphs
 enum GraphType {Fibonacci, Sort, Sine};
+
+/// Fonts
+#define MAIN_FONT_NAME "mainFont"
+#define MAIN_FONT_PATH "assets/fonts/SF Pro/SF-Pro-Display-Light.otf"

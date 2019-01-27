@@ -43,6 +43,8 @@ namespace ArktisProductions
 
 		int amplitude;
 
+		sf::Text time;
+
         sf::VertexArray vertexArray;
 
         GameDataRef _data;
