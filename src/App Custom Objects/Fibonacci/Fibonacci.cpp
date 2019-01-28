@@ -32,8 +32,6 @@ namespace ArktisProductions
 			float end_t = this->_data->gameClock.getElapsedTime().asSeconds() - helper;
 			this->elapsedTimes[i - 1] = end_t;
 
-			std::cout << "Calculated f(" << i << "), took " << end_t << "s" << std::endl;
-
 			this->vertexArray[i - 1] = sf::Vector2f((SCRWIDTH / 2.0f) + (i * WIDTH_MULTIPLIER),
 				(SCRHEIGHT / 2.0f) - (this->elapsedTimes[i - 1] * HEIGHT_MULTIPLIER));
 			if (usingCpp) this->vertexArray[i - 1].color = sf::Color::Blue;
